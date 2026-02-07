@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>THAI Engine — 2D Runtime & Editor</title>
+
+  <!-- Engine Identity -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="THAI Engine — Professional browser-based 2D game engine and editor." />
+
+  <!-- Base Styling -->
+  <style>
+    :root {
+      --bg-main: #0e0f13;
+      --bg-panel: #161821;
+      --bg-panel-dark: #10121a;
+      --accent: #4fc3f7;
+      --accent-warn: #ff5252;
+      --text-main: #dcdcdc;
+      --text-dim: #9aa0aa;
+      --border: #262a38;
+      --font-main: "Segoe UI", Roboto, system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      overflow: hidden;
+    }
+
+    /* ====== EDITOR LAYOUT ====== */
+
+    #editor-root {
+      display: grid;
+      grid-template-rows: 32px 1fr 24px;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* ====== TOP BAR ====== */
+
+    #top-bar {
+      display: flex;
+      align-items: center;
+      background: var(--bg-panel-dark);
+      border-bottom: 1px solid var(--border);
+      padding: 0 10px;
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .menu-item {
+      color: var(--text-dim);
+      cursor: pointer;
+    }
+
+    .menu-item:hover {
+      color: var(--accent);
+    }
+
+    #engine-status {
+      margin-left: auto;
+      font-size: 12px;
+      color: #7fff7f;
+    }
+
+    /* ====== MAIN WORKSPACE ====== */
+
+    #workspace {
+      display: grid;
+      grid-template-columns: 260px 1fr 300px;
+      height: 100%;
+    }
+
+    /* ====== LEFT PANEL ====== */
+
+    #left-panel {
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-header {
+      padding: 8px 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    .panel-content {
+      flex: 1;
+      padding: 8px;
+      overflow-y: auto;
+      font-size: 12px;
+    }
+
+    /* ====== VIEWPORT ====== */
+
+    #viewport-container {
+      position: relative;
+      background: #000;
+    }
+
+    #game-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #0b0d12;
+    }
+
+    #viewport-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    /* ====== RIGHT PANEL ====== */
+
+    #right-panel {
+      background: var(--bg-panel);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ====== BOTTOM BAR ====== */
+
+    #bottom-bar {
+      background: var(--bg-panel-dark);
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      padding: 4px 8px;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ====== BUTTONS ====== */
+
+    .btn {
+      background: #1f2330;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="editor-root">
+
+    <!-- ===== TOP BAR ===== -->
+    <div id="top-bar">
+      <div class="menu-item">File</div>
+      <div class="menu-item">Edit</div>
+      <div class="menu-item">Scene</div>
+      <div class="menu-item">Assets</div>
+      <div class="menu-item">Run</div>
+      <div class="menu-item">Debug</div>
+
+      <div id="engine-status">ENGINE: IDLE</div>
+    </div>
+
+    <!-- ===== WORKSPACE ===== -->
+    <div id="workspace">
+
+      <!-- LEFT PANEL -->
+      <div id="left-panel">
+        <div class="panel-header">Project / Assets</div>
+        <div class="panel-content" id="asset-browser">
+          <!-- Sprite & animation assets will appear here -->
+        </div>
+      </div>
+
+      <!-- VIEWPORT -->
+      <div id="viewport-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="viewport-overlay">
+          Scene: <span id="active-scene">None</span>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div id="right-panel">
+        <div class="panel-header">Inspector</div>
+        <div class="panel-content" id="inspector-panel">
+          <!-- Selected entity components -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== BOTTOM BAR ===== -->
+    <div id="bottom-bar">
+      <div>THAI Engine v0.1 — Web Runtime</div>
+      <div id="fps-counter">FPS: --</div>
+    </div>
+
+  </div>
+
+  <!-- ===== ENGINE ENTRY ===== -->
+  <script type="module" src="main.js"></script>
+
+</body>
+</html>
+
