@@ -1,0 +1,126 @@
+/* style/editor.css */
+
+* {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0e0f12;
+  color: #d0d0d0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#editor-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#menu-bar {
+  height: 32px;
+  background: #15171c;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #222;
+}
+
+.menu {
+  padding: 0 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #bbb;
+}
+
+.menu:hover {
+  background: #1e2128;
+  color: #fff;
+}
+
+#editor-body {
+  flex: 1;
+  display: flex;
+}
+
+#left-dock,
+#right-dock {
+  width: 240px;
+  background: #121318;
+  border-right: 1px solid #222;
+  overflow-y: auto;
+}
+
+#right-dock {
+  border-right: none;
+  border-left: 1px solid #222;
+}
+
+#center-view {
+  flex: 1;
+  background: #0b0c10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel {
+  border-bottom: 1px solid #1f222a;
+}
+
+.panel-header {
+  background: #181a21;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.panel-body {
+  padding: 8px;
+  font-size: 12px;
+}
+
+.viewport canvas {
+  background: #000;
+  border: 1px solid #222;
+}
+
+.inspector input {
+  width: 100%;
+  background: #0f1116;
+  border: 1px solid #222;
+  color: #ccc;
+  padding: 4px;
+  margin-bottom: 6px;
+}
+
+.hierarchy-item {
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.hierarchy-item:hover {
+  background: #1b1e26;
+}
+
+#status-bar {
+  height: 22px;
+  background: #15171c;
+  border-top: 1px solid #222;
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+#debug-overlay {
+  position: fixed;
+  top: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 8px;
+  font-size: 11px;
+  color: #0f0;
+  z-index: 999;
+}
